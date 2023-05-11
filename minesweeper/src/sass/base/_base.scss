@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(225, 196, 196);
+}
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
