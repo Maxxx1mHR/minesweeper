@@ -1,0 +1,14 @@
+.minesweeper {
+  // line-height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  // height: 400px;
+}
+
+.minesweeper__button {
+  // padding: 0;
+  // margin: 0;
+  height: 40px;
+  width: 40px;
+}

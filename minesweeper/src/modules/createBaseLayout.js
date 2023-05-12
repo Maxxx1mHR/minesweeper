@@ -19,9 +19,10 @@ const createBaseLayout = () => {
 
 const creatField = (size) => {
   for (let i = 0; i < size; i += 1) {
-    document.querySelector('.minesweeper').innerHTML += '<br>';
+    // document.querySelector('.minesweeper').innerHTML += '<br>';
     for (let j = 0; j < size; j += 1) {
       const createButton = createNode('button', 'minesweeper__button');
+      // createButton.textContent = '123'
       appendNodeToDom(document.querySelector('.minesweeper'), createButton);
     }
   }
