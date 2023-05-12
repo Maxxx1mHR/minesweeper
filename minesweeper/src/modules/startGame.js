@@ -1,7 +1,8 @@
-const startGame = (size, countMine) => {
+const startGame = (sizeField, countMine) => {
   const minesweeper = document.querySelector('.minesweeper');
   const minesweeperChildren = [...minesweeper.children]; // Получение дочерних элементов,включая<br>
   let btns = [];
+  let mines = '';
 
   minesweeperChildren.forEach((item, index) => {
     if (item.classList.contains('minesweeper__button')) {
@@ -25,59 +26,102 @@ const startGame = (size, countMine) => {
     return result;
   };
 
+  const isValidCells = (row, column) => row >= 0
+    && row < sizeField
+    && column >= 0
+    && column < sizeField;
+
+  const isMine = (row, column) => {
+    if (!isValidCells(row, column)) return false;
+    const index = row * sizeField + column;
+    // console.log('index isMine', index);
+    return mines.includes(index);
+  };
+
+  const getMinesCount = (row, column) => {
+    let count = 0;
+    if (isMine(row - 1, column)) {
+      count += 1;
+    }
+    if (isMine(row - 1, column + 1)) {
+      count += 1;
+    }
+    if (isMine(row - 1, column - 1)) {
+      count += 1;
+    }
+    if (isMine(row, column + 1)) {
+      count += 1;
+    }
+    if (isMine(row, column - 1)) {
+      count += 1;
+    }
+    if (isMine(row + 1, column)) {
+      count += 1;
+    }
+    if (isMine(row + 1, column + 1)) {
+      count += 1;
+    }
+    if (isMine(row + 1, column - 1)) {
+      count += 1;
+    }
+    return count;
+  };
+
+  const openCells = (row, column) => {
+    if (!isValidCells(row, column)) {
+      return;
+    }
+
+    const index = row * sizeField + column;
+    const btn = btns[index];
+
+    if (btn.disabled === true) {
+      return;
+    }
+
+    btn.disabled = true;
+
+    if (isMine(row, column)) {
+      btn.textContent = 'X';
+      return;
+    }
+    const count = getMinesCount(row, column);
+
+    if (count !== 0) {
+      btn.textContent = count;
+      return;
+    }
+    openCells(row - 1, column);
+    openCells(row - 1, column + 1);
+    openCells(row - 1, column - 1);
+    openCells(row, column + 1);
+    openCells(row, column - 1);
+    openCells(row + 1, column);
+    openCells(row + 1, column + 1);
+    openCells(row + 1, column - 1);
+  };
+
   // Сработает один раз, после клика сгенерируются мины.
-  let mines = '';
+
   minesweeper.addEventListener('click', (event) => {
     if (!event.target.classList.contains('minesweeper__button')) {
       return;
     }
     const clickedButton = btns.indexOf(event.target);
-    console.log('cout', countMine);
-    mines = generateMines(countMine, clickedButton, size * size);
+    // console.log('cout', countMine);
+    mines = generateMines(countMine, clickedButton);
 
-    console.log(clickedButton);
-    // generateMines(3, clickedButton, 4);
-    console.log(mines);
+    // console.log(mines);
   }, { once: true });
 
-  // const isMine = (event) => mines.includes(event);
   minesweeper.addEventListener('click', (event) => {
     if (!event.target.classList.contains('minesweeper__button')) {
       return;
     }
-    // console.log('123');
-    // event.target.textContent = isMine(event.target) ? 'X' : ' ';
-    const clickedButton = btns.indexOf(event.target);
-    console.log(clickedButton);
-    if (mines.includes(clickedButton)) {
-      event.target.textContent = 'X';
-    } else {
-      event.target.innerHTML = '';
-    }
-    event.target.disabled = true;
+    const index = btns.indexOf(event.target);
+    const column = index % sizeField;
+    const row = Math.floor(index / sizeField);
+    openCells(row, column);
   });
 };
 export default startGame;
-
-  // const index = 0; // Значение индекса, которое будет вычисляться при клике по кнопке
-  // const getRandomValue = (max, min = 0) => Math.floor(Math.random() * (max - min + 1) + min);
-  // console.log(getRandomValue(10));
-
-  // minesweeper.addEventListener('click', (event) => {
-  //   if (!event.target.classList.contains('minesweeper__button')) {
-  //     return;
-  //   }
-  //   const generateMines = (count, max, min = 0) => {
-  //     const result = [];
-  //     for (let i = 0; i < count; i += 1) {
-  //       const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-  //       if (result.includes(randomNumber) || randomNumber === index) {
-  //         i -= 1;
-  //       } else {
-  //         result[i] = randomNumber;
-  //       }
-  //     }
-  //     return result;
-  //   };
-  //   console.log(generateMines(3, 7));
-  // });
