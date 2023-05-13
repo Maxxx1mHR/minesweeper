@@ -1,23 +1,22 @@
-const startGame = (sizeField, countMine) => {
+import { createLayout, creatField } from './createBaseLayout';
+// import { openModal } from './modal';
+
+const startGame = (sizeField, countMines) => {
+  createLayout();
+  creatField(sizeField);
   const minesweeper = document.querySelector('.minesweeper');
-  const minesweeperChildren = [...minesweeper.children]; // Получение дочерних элементов,включая<br>
-  let btns = [];
+  const cells = [...minesweeper.children]; // Получение дочерних элементов
   let mines = '';
 
-  minesweeperChildren.forEach((item, index) => {
-    if (item.classList.contains('minesweeper__button')) {
-      btns[index] = item;
-    } else {
-      btns[index] = 0;
-    }
-  });
-  btns = btns.filter(Boolean); // Удаление br. Остались только кнопки
-
-  const generateMines = (count, clickedButton, max = 100, min = 0) => {
+  // Генерирует мины на поле.
+  // excludeCell - первая активная ячейка - исключить из генерации на ее месте мины
+  const generateMines = (countMine, excludeCell) => {
+    const min = 0;
+    const max = sizeField ** 2;
     const result = [];
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 0; i < countMine; i += 1) {
       const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-      if (result.includes(randomNumber) || randomNumber === clickedButton) {
+      if (result.includes(randomNumber) || randomNumber === excludeCell) {
         i -= 1;
       } else {
         result[i] = randomNumber;
@@ -26,15 +25,12 @@ const startGame = (sizeField, countMine) => {
     return result;
   };
 
-  const isValidCells = (row, column) => row >= 0
-    && row < sizeField
-    && column >= 0
-    && column < sizeField;
+  const IsExistCells = (row, column) => row >= 0
+    && row < sizeField && column >= 0 && column < sizeField;
 
   const isMine = (row, column) => {
-    if (!isValidCells(row, column)) return false;
+    if (!IsExistCells(row, column)) return false;
     const index = row * sizeField + column;
-    // console.log('index isMine', index);
     return mines.includes(index);
   };
 
@@ -67,28 +63,35 @@ const startGame = (sizeField, countMine) => {
     return count;
   };
 
+  const openBombsCells = (minesArray) => {
+    minesArray.forEach((index) => { cells[index].textContent = 'X'; });
+  };
+
   const openCells = (row, column) => {
-    if (!isValidCells(row, column)) {
+    if (!IsExistCells(row, column)) {
       return;
     }
 
     const index = row * sizeField + column;
-    const btn = btns[index];
+    const cell = cells[index];
+    // console.log(cells);
 
-    if (btn.disabled === true) {
+    if (cell.disabled === true) {
       return;
     }
 
-    btn.disabled = true;
+    cell.disabled = true;
 
     if (isMine(row, column)) {
-      btn.textContent = 'X';
-      return;
+      cell.textContent = 'X';
+      // openModal();
+      openBombsCells(mines);
+      // return;
     }
     const count = getMinesCount(row, column);
 
     if (count !== 0) {
-      btn.textContent = count;
+      cell.textContent = count;
       return;
     }
     openCells(row - 1, column);
@@ -101,24 +104,21 @@ const startGame = (sizeField, countMine) => {
     openCells(row + 1, column - 1);
   };
 
-  // Сработает один раз, после клика сгенерируются мины.
+  // // Сработает один раз, после клика сгенерируются мины.
 
   minesweeper.addEventListener('click', (event) => {
     if (!event.target.classList.contains('minesweeper__button')) {
       return;
     }
-    const clickedButton = btns.indexOf(event.target);
-    // console.log('cout', countMine);
-    mines = generateMines(countMine, clickedButton);
-
-    // console.log(mines);
+    const clickedButton = cells.indexOf(event.target);
+    mines = generateMines(countMines, clickedButton);
   }, { once: true });
 
   minesweeper.addEventListener('click', (event) => {
     if (!event.target.classList.contains('minesweeper__button')) {
       return;
     }
-    const index = btns.indexOf(event.target);
+    const index = cells.indexOf(event.target);
     const column = index % sizeField;
     const row = Math.floor(index / sizeField);
     openCells(row, column);
