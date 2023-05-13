@@ -1,4 +1,33 @@
-.minesweeper {
+.minesweeper__panel {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.minesweeper__count-moves {
+  display: flex;
+  align-items: center;
+}
+
+.minesweeper__count-moves-img {
+  width: 40px;
+}
+.minesweeper__new-game {
+  width: 50px;
+}
+
+.minesweeper__time {
+  width: 75px;
+  display: flex;
+  align-items: center;
+}
+.minesweeper__time-img {
+  width: 50px;
+}
+
+.minesweeper__wrapper {
+  margin: 0 auto;
   // line-height: 0;
   display: flex;
   flex-wrap: wrap;
