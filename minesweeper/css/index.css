@@ -345,8 +345,16 @@ body {
   height: 100vh;
 }
 
+.flag {
+  background-image: url("../src/assets/icons/flag_small.png");
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .minesweeper__panel {
-  width: 300px;
+  max-width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -359,6 +367,7 @@ body {
 }
 
 .minesweeper__count-moves {
+  width: 75px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -396,12 +405,31 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 275px;
 }
 
 .minesweeper__button {
-  height: 25px;
-  width: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #ddd;
+  border-color: #ddd rgb(120, 120, 120) rgb(120, 120, 120) #ddd;
+  border-style: solid;
+  border-width: 3px;
+  height: 20px;
+  width: 20px;
+}
+
+.minesweeper__button_disabled {
+  border-width: 1px;
+  background: rgb(238, 238, 238);
+  border-color: none;
+  pointer-events: none;
 }
 
 .modal {
