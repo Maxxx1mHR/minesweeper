@@ -49,8 +49,6 @@ const creatField = (size) => {
   }
   const minesweeper = document.querySelector('.minesweeper__wrapper');
   const cellButton = document.querySelector('.minesweeper__button');
-  // console.log(size);
-  // console.log(cellButton.offsetWidth);
   minesweeper.style.width = `${size * cellButton.offsetWidth}px`;
 };
 

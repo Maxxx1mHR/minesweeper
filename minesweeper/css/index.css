@@ -443,7 +443,7 @@ body {
 }
 
 .modal__wrapper {
-  max-width: 400px;
+  max-width: 200px;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
