@@ -15,6 +15,7 @@
   width: 40px;
 }
 .minesweeper__new-game {
+  cursor: pointer;
   width: 50px;
 }
 
@@ -43,6 +44,8 @@
 }
 
 .minesweeper__button {
+  font-size: 20px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,4 +71,5 @@
   border-color: none;
   pointer-events: none;
 }
+
 

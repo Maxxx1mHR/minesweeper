@@ -26,7 +26,7 @@ const isMine = (sizeField, mines, row, column) => {
   return mines.includes(index);
 };
 
-// Количество мин на поле
+// Количество мин около ячейки
 const getMinesCount = (sizeField, mines, row, column) => {
   let count = 0;
 

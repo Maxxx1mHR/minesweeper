@@ -17,11 +17,11 @@ const createLayout = () => {
   const createMinesweeper = createNode('div', 'minesweeper');
   createMinesweeper.innerHTML = `
     <div class="minesweeper__panel">
+    <img src="assets/icons/game.png" alt="game" class="minesweeper__new-game">
       <div class="minesweeper__count-moves">
         <img src="assets/icons/move.png" alt="move" class="minesweeper__count-moves-img">
         <span>0</span>
       </div>
-      <img src="assets/icons/game.png" alt="game" class="minesweeper__new-game">
       <div class="minesweeper__time">
         <img src="assets/icons/clock.png" alt="time" class="minesweeper__time-img">
         <span>0</span>

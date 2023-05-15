@@ -353,6 +353,38 @@ body {
   background-repeat: no-repeat;
 }
 
+.one_blue {
+  color: #2ca8d1;
+}
+
+.two_green {
+  color: #40ff40;
+}
+
+.three_red {
+  color: #e61919;
+}
+
+.four_dark-blue {
+  color: #0e0e7d;
+}
+
+.five_brown {
+  color: #7b4b1b;
+}
+
+.six_turquoise {
+  color: #30d5c8;
+}
+
+.seven_black {
+  color: #000;
+}
+
+.eight_white {
+  color: #fff;
+}
+
 .minesweeper__panel {
   max-width: 500px;
   display: -webkit-box;
@@ -381,6 +413,7 @@ body {
 }
 
 .minesweeper__new-game {
+  cursor: pointer;
   width: 50px;
 }
 
@@ -408,6 +441,8 @@ body {
 }
 
 .minesweeper__button {
+  font-size: 20px;
+  font-weight: 600;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -443,7 +478,7 @@ body {
 }
 
 .modal__wrapper {
-  max-width: 200px;
+  max-width: 400px;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
