@@ -513,4 +513,66 @@ body {
 
 .modal__active {
   display: block;
+}
+
+.select {
+  width: 150px;
+}
+
+.select__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  background-color: #fff;
+  padding: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select__options {
+  position: absolute;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  display: none;
+}
+
+.select.active .select__options {
+  display: block;
+}
+
+.select__option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  cursor: pointer;
+  padding: 0 16px;
+  border-radius: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.select__option:hover {
+  background-color: #F2F2F2;
+}
+
+.settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.settings__select {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
 }/*# sourceMappingURL=index.css.map */

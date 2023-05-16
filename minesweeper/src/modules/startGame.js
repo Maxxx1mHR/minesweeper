@@ -97,6 +97,9 @@ const startGame = (sizeField, countMines) => {
     if (event.target.classList.contains('minesweeper__new-game')) {
       clearInterval(timerId);
     }
+    // if (event.target.classList.contains('settings__select')) {
+    //   clearInterval(timerId);
+    // }
 
     if (!event.target.classList.contains('minesweeper__button')) {
       return;

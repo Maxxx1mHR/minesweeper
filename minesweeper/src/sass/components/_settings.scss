@@ -1,0 +1,91 @@
+.select {
+  // position: absolute;
+  width: 150px;
+}
+
+
+.select__button {
+  display: flex;
+  height: 30px;
+  background-color: #fff;
+  padding: 20px;
+  align-items: center;
+  // justify-content: start;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.select__options {
+  position: absolute;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  // user-select: none;
+  display: none;
+}
+
+.select.active .select__options {
+  display: block;
+}
+
+
+.select__option {
+  display: flex;
+  height: 30px;
+  cursor: pointer;
+  padding: 0 16px;
+  border-radius: 5px;
+  align-items: center;
+  &:hover {
+    background-color: #F2F2F2;
+  }
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+}
+.settings__select {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+
+// .settings__difficult-level {
+//   padding: 20px 25px;
+//   text-decoration: none;
+//   height: 30px;
+//   background-color: red;
+// }
+
+
+
+// .dropdown {
+//   // width: 100%;
+//   list-style: none;
+//   position: absolute;
+//   z-index: 2;
+//   display: none;
+
+//   display: block;
+// }
+// .dropdown__item {
+//   text-decoration: none;
+//   display: block;
+// }
+// .dropdown__link {
+//   display: block;
+//   text-decoration: none;
+//   padding: 20px 25px;
+// }
+
+// // .settings__difficult-level:hover ~.dropdown {
+// //   display: block;
+// // }
+
+// ul li:hover ul.dropdown {
+//   display: block;
+// }

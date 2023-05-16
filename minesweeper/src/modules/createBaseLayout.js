@@ -16,6 +16,33 @@ const createLayout = () => {
 
   const createMinesweeper = createNode('div', 'minesweeper');
   createMinesweeper.innerHTML = `
+    <div class="settings">
+    <div class="select">
+    <div class="select__button">
+      <span class="select__text">Difficulty levels</span>
+    </div>
+    <ul class="select__options">
+      <li class="select__option">
+        <span class="select__option-text">Easy</span>
+      </li>
+      <li class="select__option">
+        <span class="select__option-text">Medium</span>
+      </li>
+      <li class="select__option">
+        <span class="select__option-text">Hard</span>
+      </li>
+    </ul>
+  </div>
+    <div class="settings__mines">
+      <span>Мины</span>
+      <input type="range" class="range" value="0" min="0" max="100">
+      <span class="rangeValue">0</span>
+    </div>
+    <div class="settings__score"><img src="assets/icons/result.png" alt="time" class="minesweeper__bomb-img"></div>
+    <div class=settings__theme>тема</div>
+  </div>
+
+
     <div class="minesweeper__panel">
     <img src="assets/icons/game.png" alt="game" class="minesweeper__new-game">
       <div class="minesweeper__count-moves">
