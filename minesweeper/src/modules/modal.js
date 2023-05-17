@@ -23,10 +23,12 @@ const createModal = (resultGame, stopInterval, ...params) => {
   if (resultGame === true) {
     modal.innerHTML = win;
     clearInterval(stopInterval);
-  } else {
+  }
+  if (resultGame === false) {
     modal.innerHTML = lose;
     clearInterval(stopInterval);
   }
+
   document.body.prepend(modal);
 };
 export default createModal;

@@ -91,8 +91,6 @@ const startGame = (sizeField, countMines) => {
     openCells(row - 1, column + 1);
   };
 
-  // document.addEventListener('contextmenu', (event) => event.preventDefault());
-
   mainMine.addEventListener('click', (event) => {
     // Остановить таймер при смене уровня сложности
     if (event.target.closest('.select__option')) {

@@ -1,23 +1,51 @@
+import { createLayout, creatField } from './modules/createBaseLayout';
 import startGame from './modules/startGame';
 // import setFlag from './modules/setFlag';
 
 window.addEventListener('load', () => {
   let currentLevelGameDifficult = '';
-  // let timerId;
+  let countMines = 10;
 
-  startGame(25, 99);
+  // createLayout();
+  // creatField(10);
+  startGame(10, 10);
+
+  // startGame(10, 10);
+  // startGame(10, countMines);
+
+  // document.querySelector('.minesweeper__wrapper').addEventListener('click', (event) => {
+  //   if (event.target.closest('.minesweeper__wrapper')) {
+  //     console.log(countMines);
+  //     // startGame(10, 10);
+  //   }
+  // });
+
   let countFlags;
   document.addEventListener('click', (event) => {
+
+    if (event.target.closest('.minesweeper__wrapper')) {
+      console.log(countMines);
+      // document.body.innerHTML = '';
+      // createLayout();
+      // creatField(10);
+      // startGame(10, countMines);
+    }
+
+
     // Клик по nee game
     if (event.target.closest('.minesweeper__new-game')) {
       document.body.innerHTML = '';
-      startGame(25, 99);
+      // createLayout();
+      // creatField(10);
+      startGame(10, countMines);
     }
 
     // Клик по модалке (закрыть)
     if (event.target.closest('.modal__button')) {
       document.body.innerHTML = '';
-      startGame(25, 99);
+      // createLayout();
+      // creatField(10);
+      startGame(10, countMines);
     }
 
     // Выбор уровня сложнолсти
@@ -35,6 +63,8 @@ window.addEventListener('load', () => {
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
         document.body.innerHTML = '';
+        // createLayout();
+        // creatField(10);
         startGame(10, 10);
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Medium') {
@@ -42,20 +72,34 @@ window.addEventListener('load', () => {
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
         document.body.innerHTML = '';
-        startGame(15, 10);
+        // createLayout();
+        // creatField(15);
+        startGame(15, 40);
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Hard') {
         currentLevelGameDifficult = 'Hard';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
         document.body.innerHTML = '';
-        startGame(25, 10);
+        // createLayout();
+        // creatField(25);
+        startGame(25, 99);
       }
 
       document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
       document.querySelector('.select').classList.remove('active');
     }
   });
+
+
+  // document.addEventListener('mousemove', (event) => {
+  //   if (event.target.closest('.settings__range')) {
+  //     // console.log(event.target.closest('.settings__range').value);
+  //     document.querySelector('.settings__count-mines').textContent = event.target.closest('.settings__range').value;
+  //     countMines = document.querySelector('.settings__count-mines').textContent;
+  //   }
+  // });
+  // document.querySelector('.settings__count-mines').textContent = countMines;
 
   // ПКМ. Добавление флагов и мин
   document.addEventListener('contextmenu', (event) => event.preventDefault());

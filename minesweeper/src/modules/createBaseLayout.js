@@ -19,7 +19,7 @@ const createLayout = () => {
     <div class="settings">
     <div class="select">
     <div class="select__button">
-      <span class="select__text">Difficulty levels</span>
+     Easy
     </div>
     <ul class="select__options">
       <li class="select__option">
@@ -34,9 +34,9 @@ const createLayout = () => {
     </ul>
   </div>
     <div class="settings__mines">
-      <span>Мины</span>
-      <input type="range" class="range" value="0" min="0" max="100">
-      <span class="rangeValue">0</span>
+      <span>Count mines</span>
+      <input type="range" class="settings__range" value="0" min="10" max="99">
+      <span class="settings__count-mines">0</span>
     </div>
     <div class="settings__score"><img src="assets/icons/result.png" alt="time" class="minesweeper__bomb-img"></div>
     <div class=settings__theme>тема</div>
