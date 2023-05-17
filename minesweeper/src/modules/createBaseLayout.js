@@ -10,7 +10,20 @@ const appendNodeToDom = (domNode, ...newNode) => {
   });
 };
 
-const createLayout = () => {
+const creatField = (size) => {
+  for (let i = 0; i < size; i += 1) {
+    for (let j = 0; j < size; j += 1) {
+      const createButton = createNode('div', 'minesweeper__button');
+      appendNodeToDom(document.querySelector('.minesweeper__wrapper'), createButton);
+    }
+  }
+  const minesweeper = document.querySelector('.minesweeper__wrapper');
+  const cellButton = document.querySelector('.minesweeper__button');
+  minesweeper.style.width = `${size * cellButton.offsetWidth}px`;
+};
+
+const createLayout = (size) => {
+  document.body.innerHTML = '';
   const createContainer = createNode('div', 'container');
   appendNodeToDom(document.body, createContainer);
 
@@ -19,7 +32,7 @@ const createLayout = () => {
     <div class="settings">
     <div class="select">
     <div class="select__button">
-     Easy
+      <span class="sBtn-text">Difficult level</span>
     </div>
     <ul class="select__options">
       <li class="select__option">
@@ -36,7 +49,7 @@ const createLayout = () => {
     <div class="settings__mines">
       <span>Count mines</span>
       <input type="range" class="settings__range" value="0" min="10" max="99">
-      <span class="settings__count-mines">0</span>
+      <span class="settings__count-mines">10</span>
     </div>
     <div class="settings__score"><img src="assets/icons/result.png" alt="time" class="minesweeper__bomb-img"></div>
     <div class=settings__theme>тема</div>
@@ -65,18 +78,7 @@ const createLayout = () => {
     <div class="minesweeper__wrapper"></div>
   `;
   appendNodeToDom(createContainer, createMinesweeper);
+  creatField(size);
 };
 
-const creatField = (size) => {
-  for (let i = 0; i < size; i += 1) {
-    for (let j = 0; j < size; j += 1) {
-      const createButton = createNode('div', 'minesweeper__button');
-      appendNodeToDom(document.querySelector('.minesweeper__wrapper'), createButton);
-    }
-  }
-  const minesweeper = document.querySelector('.minesweeper__wrapper');
-  const cellButton = document.querySelector('.minesweeper__button');
-  minesweeper.style.width = `${size * cellButton.offsetWidth}px`;
-};
-
-export { createLayout, creatField, createNode };
+export { createLayout, createNode };
