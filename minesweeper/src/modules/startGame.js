@@ -5,8 +5,8 @@ import {
   generateMines, IsExistCells, isMine, getMinesCount, openMinesCells,
 } from './mines';
 
+let currentLevelGameDifficult = '';
 const startGame = (sizeField, countMines) => {
-  // setFlag();
   let countMove = 0; // счетчик ходов
   let timeGame = 0;
   let timerId;
@@ -94,12 +94,34 @@ const startGame = (sizeField, countMines) => {
   // document.addEventListener('contextmenu', (event) => event.preventDefault());
 
   mainMine.addEventListener('click', (event) => {
+    // Остановить таймер при смене уровня сложности
+    if (event.target.closest('.select__option')) {
+      console.log('Curr', currentLevelGameDifficult);
+      if (event.target.closest('.select__option').innerText === currentLevelGameDifficult) {
+        console.log('1');
+        return;
+      }
+      if (event.target.closest('.select__option').innerText === 'Easy') {
+        currentLevelGameDifficult = 'Easy';
+        console.log('2');
+        clearInterval(timerId);
+      }
+      if (event.target.closest('.select__option').innerText === 'Medium') {
+        currentLevelGameDifficult = 'Medium';
+        console.log('3');
+        clearInterval(timerId);
+      }
+      if (event.target.closest('.select__option').innerText === 'Hard') {
+        currentLevelGameDifficult = 'Hard';
+        console.log('4');
+        clearInterval(timerId);
+      }
+    }
+
+    // Остановить таймер при клике new game
     if (event.target.classList.contains('minesweeper__new-game')) {
       clearInterval(timerId);
     }
-    // if (event.target.classList.contains('settings__select')) {
-    //   clearInterval(timerId);
-    // }
 
     if (!event.target.classList.contains('minesweeper__button')) {
       return;
@@ -147,4 +169,5 @@ const startGame = (sizeField, countMines) => {
     }
   });
 };
+
 export default startGame;
