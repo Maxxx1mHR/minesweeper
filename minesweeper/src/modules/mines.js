@@ -58,10 +58,11 @@ const getMinesCount = (sizeField, mines, row, column) => {
 };
 
 // Открыть все ячейки, в которых есть мины
+{/* <img src="assets/icons/bomb_small.png" alt="bobm" /> */ }
 const openMinesCells = (mines, cells) => {
   mines.forEach((index) => {
     cells[index].innerHTML = `
-    <img src="assets/icons/bomb_small.png" alt="bobm" />
+    <span class="bomb"></span>
   `;
   });
 };

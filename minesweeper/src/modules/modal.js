@@ -1,4 +1,5 @@
 import { createNode } from './createBaseLayout';
+import { addSoundLose, addSoundWin } from './clickSound';
 
 const createModal = (resultGame, stopInterval, ...params) => {
   const modal = createNode('div', 'modal');
@@ -23,10 +24,12 @@ const createModal = (resultGame, stopInterval, ...params) => {
   if (resultGame === true) {
     modal.innerHTML = win;
     clearInterval(stopInterval);
+    addSoundWin();
   }
   if (resultGame === false) {
     modal.innerHTML = lose;
     clearInterval(stopInterval);
+    addSoundLose();
   }
 
   document.body.prepend(modal);

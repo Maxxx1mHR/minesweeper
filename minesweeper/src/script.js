@@ -7,13 +7,17 @@ import {
   getMinesCount,
   openMinesCells,
 } from './modules/mines';
-
+import switchTheme from './modules/theme';
 
 import startGame from './modules/startGame';
+import { addSoundByClick, addSondFlagSet, addSondFlagDelete, offSound } from './modules/clickSound';
 
 // import setFlag from './modules/setFlag';
 
 window.addEventListener('load', () => {
+  switchTheme();
+  offSound();
+  addSoundByClick();
   // let statusGenerateMines = true;
   let sizeField = 10;
   let mines = '';
@@ -58,6 +62,7 @@ window.addEventListener('load', () => {
     if (isMine(sizeField, mines, row, column)) {
       openMinesCells(mines, cells);
       createModal(false, timerId);
+
       document.querySelector('.modal').classList.add('modal__active');
 
       return;
@@ -134,9 +139,9 @@ window.addEventListener('load', () => {
 
   document.addEventListener('click', (event) => {
 
-    console.log(currentLevelGameDifficult);
+    // console.log(currentLevelGameDifficult);
     // let currentLevelGameDifficult = '';
-    console.log(sizeField);
+    // console.log(sizeField);
     let timeGame = 0;
     // Клик по ячейкам
     if (event.target.closest('.minesweeper__wrapper')) {
@@ -151,7 +156,7 @@ window.addEventListener('load', () => {
         // console.log(clickedButton);
         // console.log('123', countMines);
         mines = generateMines(sizeField, countMines, clickedButton);
-        console.log('Мины', mines);
+        // console.log('Мины', mines);
         document.querySelector('.settings__range').disabled = true;
 
         timerId = setInterval(() => {
@@ -166,7 +171,7 @@ window.addEventListener('load', () => {
         document.querySelector('.minesweeper__bombs span').textContent = mines.length - countFlags;
       }
       // Количество ходов
-      if (event.target.closest('.minesweeper__button')) {
+      if (event.target.closest('.minesweeper__button') && !event.target.classList.contains('flag')) {
         countMove += 1;
         document.querySelector('.minesweeper__count-moves span').textContent = countMove;
       }
@@ -218,7 +223,7 @@ window.addEventListener('load', () => {
     if (event.target.closest('.select__button')) {
       event.target.closest('.select').classList.toggle('active');
     }
-    console.log('test', event.target);
+    // console.log('test', event.target);
     // console.log(event.target.closest('.select__option').children[0].textContent);
     // console.log('123', currentLevelGameDifficult);
     if (event.target.closest('.select__option')) {
@@ -229,7 +234,7 @@ window.addEventListener('load', () => {
       }
 
       if (event.target.closest('.select__option').children[0].textContent === 'Easy') {
-        console.log('1');
+        // console.log('1');
         currentLevelGameDifficult = 'Easy';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
@@ -243,7 +248,7 @@ window.addEventListener('load', () => {
         openCell = 0;
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Medium') {
-        console.log('2');
+        // console.log('2');
         currentLevelGameDifficult = 'Medium';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
@@ -373,6 +378,7 @@ window.addEventListener('load', () => {
   // ПКМ.Добавление флагов и мин
   document.addEventListener('contextmenu', (event) => event.preventDefault());
   document.addEventListener('mousedown', (event) => {
+
     const count = +document.querySelector('.minesweeper__bombs span').textContent;
 
     if (event.target.classList.contains('minesweeper__button') && event.button === 2) {
@@ -380,10 +386,13 @@ window.addEventListener('load', () => {
       if (event.target.classList.contains('flag')) {
         event.target.classList.remove('flag');
         countFlags -= 1;
+        addSondFlagDelete();
         document.querySelector('.minesweeper__bombs span').textContent = count + 1;
       } else {
         event.target.classList.add('flag');
         countFlags += 1;
+        console.log('123');
+        addSondFlagSet();
         document.querySelector('.minesweeper__bombs span').textContent = count - 1;
       }
       document.querySelector('.minesweeper__flags span').textContent = countFlags;

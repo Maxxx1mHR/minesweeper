@@ -673,4 +673,34 @@ body {
 
 .setting__sound-off {
   background-image: url("../src/assets/icons/soundOff.png");
-}/*# sourceMappingURL=index.css.map */
+}
+
+body {
+  background-color: rgb(147, 147, 147);
+}
+
+.minesweeper__button {
+  background-color: #000;
+  border-color: #ddd rgb(120, 120, 120) rgb(120, 120, 120) #ddd;
+}
+
+.minesweeper__button_disabled {
+  background: rgb(129, 129, 129);
+}
+
+.bomb {
+  background-image: url("../src/assets/icons/bomb_small-dark.png");
+}
+
+.settings__theme {
+  -webkit-transition: 1s all;
+  transition: 1s all;
+  background: #000;
+  color: #fff;
+}
+.settings__theme:hover {
+  -webkit-transition: 1s all;
+  transition: 1s all;
+  background: #fff;
+  color: #000;
+}/*# sourceMappingURL=index-dark.css.map */

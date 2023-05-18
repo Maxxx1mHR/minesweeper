@@ -1,5 +1,5 @@
 .select {
-  width: 130px;
+  width: 110px;
 }
 
 
@@ -7,8 +7,9 @@
   display: flex;
   height: 30px;
   background-color: #fff;
-  padding: 20px;
+  padding: 0 10px;
   align-items: center;
+  font-size: 14px;
   // justify-content: start;
   border-radius: 5px;
   cursor: pointer;
@@ -17,9 +18,11 @@
 
 .select__options {
   position: absolute;
-  padding: 20px;
+  width: 110px;
+  padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
+  font-size: 14px;
   background-color: #fff;
   // user-select: none;
   display: none;
@@ -34,8 +37,9 @@
   display: flex;
   height: 30px;
   cursor: pointer;
-  padding: 0 16px;
+  // padding: 0 16px;
   border-radius: 5px;
+  justify-content: center;
   align-items: center;
   &:hover {
     background-color: #F2F2F2;
@@ -54,13 +58,13 @@
 }
 
 .settings__mines {
-  height: 70px;
+  height: 60px;
   // position: relative;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  // padding: 5px 20px;
   // background-color: #c9c9c9;
   border-radius: 10px;
 }
@@ -94,4 +98,35 @@
   background: #022f52;
   margin-left: 15px;
   border-radius: 25px;
+}
+
+.settings__theme {
+  padding: 7px;
+  border: none;
+  // background: #022f52;
+  // border: 1px solid #fff;
+  border-radius: 50px;
+  color: #000;
+  cursor: pointer;
+  transition: 1s all;
+  &:hover {
+    transition: 1s all;
+    color: #fff;
+    background: #000;
+    // border: 1px solid #000;
+  }
+}
+
+.setting__sound {
+  height: 50px;
+  width: 50px;
+  background-image: url('../src/assets/icons/soundOn.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px;
+  cursor: pointer;
+}
+
+.setting__sound-off {
+  background-image: url('../src/assets/icons/soundOff.png');
 }
