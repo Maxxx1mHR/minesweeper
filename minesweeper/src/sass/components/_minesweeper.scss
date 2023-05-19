@@ -1,35 +1,83 @@
+.minesweeper {
+  width: 100%;
+  padding-top: 100px;
+}
 .minesweeper__panel {
-  width: 500px;
+  // width: 500px;
+  padding: 0 40px;
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .minesweeper__count-moves {
-  width: 75px;
+  // width: 75px;
   display: flex;
   align-items: center;
+  @include media-mobile {
+    font-size: 12px;
+  }
 }
 
 .minesweeper__count-moves-img {
   width: 40px;
+  @include media-mobile {
+    width: 30px;
+  }
 }
 .minesweeper__new-game {
   cursor: pointer;
   width: 50px;
+  @include media-mobile {
+    width: 35px;
+  }
 }
 
 .minesweeper__time {
-  width: 75px;
+  // width: 75px;
   display: flex;
   align-items: center;
+  @include media-mobile {
+    font-size: 12px;
+  }
 }
 .minesweeper__time-img {
   width: 50px;
+  @include media-mobile {
+    width: 35px;
+  }
+}
+
+.minesweeper__bombs {
+  display: flex;
+  align-items: center;
+  @include media-mobile {
+    font-size: 12px;
+  }
 }
 
 .minesweeper__bomb-img {
   // width: 20px;
+  @include media-mobile {
+    width: 30px;
+  }
+}
+
+.minesweeper__flags {
+  display: flex;
+  align-items: center;
+  @include media-mobile {
+    font-size: 12px;
+  }
+}
+
+.minesweeper__flag-img {
+  @include media-mobile {
+    width: 30px;
+  }
 }
 
 .minesweeper__wrapper {

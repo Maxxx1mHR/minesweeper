@@ -1,12 +1,15 @@
 @import 'sass/base/normalize';
+@import 'sass/base/mixim';
 
 @import 'sass/base/base';
 @import 'sass/base/icons';
 @import 'sass/base//constants';
 
+
 @import 'sass/components/minesweeper';
 @import 'sass/components/modal';
 @import 'sass/components/settings';
+@import 'sass/components/select';
 
 body {
   background-color: rgb(147, 147, 147);

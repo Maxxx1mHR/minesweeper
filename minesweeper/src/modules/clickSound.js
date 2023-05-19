@@ -2,7 +2,7 @@ const addSoundByClick = () => {
   document.addEventListener('click', (event) => {
     const sound = new Audio();
     sound.src = 'assets/sound/click.mp3';
-    if (document.querySelector('.setting__sound').classList.contains('setting__sound-off')) {
+    if (document.querySelector('.settings__sound').classList.contains('settings__sound-off')) {
       sound.volume = 0;
     } else {
       sound.volume = 0.5;
@@ -16,7 +16,7 @@ const addSoundByClick = () => {
 const addSoundLose = () => {
   const sound = new Audio();
   sound.src = 'assets/sound/boom.mp3';
-  if (document.querySelector('.setting__sound').classList.contains('setting__sound-off')) {
+  if (document.querySelector('.settings__sound').classList.contains('settings__sound-off')) {
     sound.volume = 0;
   } else {
     sound.volume = 0.5;
@@ -32,7 +32,7 @@ const addSoundLose = () => {
 const addSoundWin = () => {
   const sound = new Audio();
   sound.src = 'assets/sound/win.mp3';
-  if (document.querySelector('.setting__sound').classList.contains('setting__sound-off')) {
+  if (document.querySelector('.settings__sound').classList.contains('settings__sound-off')) {
     sound.volume = 0;
   } else {
     sound.volume = 0.5;
@@ -48,7 +48,7 @@ const addSoundWin = () => {
 const addSondFlagSet = () => {
   const sound = new Audio();
   sound.src = 'assets/sound/flag.mp3';
-  if (document.querySelector('.setting__sound').classList.contains('setting__sound-off')) {
+  if (document.querySelector('.settings__sound').classList.contains('settings__sound-off')) {
     sound.volume = 0;
   } else {
     sound.volume = 0.5;
@@ -59,7 +59,7 @@ const addSondFlagSet = () => {
 const addSondFlagDelete = () => {
   const sound = new Audio();
   sound.src = 'assets/sound/deleteFlag.mp3';
-  if (document.querySelector('.setting__sound').classList.contains('setting__sound-off')) {
+  if (document.querySelector('.settings__sound').classList.contains('settings__sound-off')) {
     sound.volume = 0;
   } else {
     sound.volume = 0.5;
@@ -69,8 +69,8 @@ const addSondFlagDelete = () => {
 
 const offSound = () => {
   document.addEventListener('click', (event) => {
-    if (event.target.closest('.setting__sound')) {
-      event.target.classList.toggle('setting__sound-off');
+    if (event.target.closest('.settings__sound')) {
+      event.target.classList.toggle('settings__sound-off');
     }
   });
 };

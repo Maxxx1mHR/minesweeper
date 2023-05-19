@@ -51,9 +51,9 @@ const createLayout = (size) => {
       <input type="range" class="settings__range" value="0" min="10" max="99">
       <span class="settings__count-mines">10</span>
     </div>
-    <div class="settings__score"><img src="assets/icons/result.png" alt="time" class="minesweeper__bomb-img"></div>
+    <div class="settings__score"><img src="assets/icons/result.png" alt="result" class="settings__score-img"></div>
     <button class=settings__theme>Theme</button>
-    <span class="setting__sound"></span>
+    <span class="settings__sound"></span>
   </div>
 
 

@@ -342,7 +342,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
 }
 
 .flag {
@@ -393,8 +392,15 @@ body {
   color: #fff;
 }
 
+.minesweeper {
+  width: 100%;
+  padding-top: 100px;
+}
+
 .minesweeper__panel {
-  width: 500px;
+  padding: 0 40px;
+  max-width: 800px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -404,10 +410,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 20px;
 }
 
 .minesweeper__count-moves {
-  width: 75px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,18 +421,32 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
+@media (max-width: 576px) {
+  .minesweeper__count-moves {
+    font-size: 12px;
+  }
+}
 
 .minesweeper__count-moves-img {
   width: 40px;
+}
+@media (max-width: 576px) {
+  .minesweeper__count-moves-img {
+    width: 30px;
+  }
 }
 
 .minesweeper__new-game {
   cursor: pointer;
   width: 50px;
 }
+@media (max-width: 576px) {
+  .minesweeper__new-game {
+    width: 35px;
+  }
+}
 
 .minesweeper__time {
-  width: 75px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,9 +454,59 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
+@media (max-width: 576px) {
+  .minesweeper__time {
+    font-size: 12px;
+  }
+}
 
 .minesweeper__time-img {
   width: 50px;
+}
+@media (max-width: 576px) {
+  .minesweeper__time-img {
+    width: 35px;
+  }
+}
+
+.minesweeper__bombs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-width: 576px) {
+  .minesweeper__bombs {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .minesweeper__bomb-img {
+    width: 30px;
+  }
+}
+
+.minesweeper__flags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-width: 576px) {
+  .minesweeper__flags {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .minesweeper__flag-img {
+    width: 30px;
+  }
 }
 
 .minesweeper__wrapper {
@@ -523,68 +593,20 @@ body {
   display: block;
 }
 
-.select {
-  width: 110px;
-}
-
-.select__button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 30px;
-  background-color: #fff;
-  padding: 0 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.select__options {
-  position: absolute;
-  width: 110px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: #fff;
-  display: none;
-}
-
-.select.active .select__options {
-  display: block;
-}
-
-.select__option {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 30px;
-  cursor: pointer;
-  border-radius: 5px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.select__option:hover {
-  background-color: #F2F2F2;
-}
-
 .settings {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  max-width: 800px;
+  margin: 0 auto;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 20px;
+  padding: 0 40px;
 }
 
 .settings__select {
@@ -609,6 +631,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .settings__range {
@@ -621,6 +644,11 @@ body {
   outline: none;
   border-radius: 15px;
   overflow: hidden;
+}
+@media (max-width: 576px) {
+  .settings__range {
+    width: 100px;
+  }
 }
 
 .settings__range::-webkit-slider-thumb {
@@ -645,6 +673,12 @@ body {
   border-radius: 25px;
 }
 
+@media (max-width: 576px) {
+  .settings__score-img {
+    width: 35px;
+  }
+}
+
 .settings__theme {
   padding: 7px;
   border: none;
@@ -660,8 +694,14 @@ body {
   color: #fff;
   background: #000;
 }
+@media (max-width: 576px) {
+  .settings__theme {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
 
-.setting__sound {
+.settings__sound {
   height: 50px;
   width: 50px;
   background-image: url("../src/assets/icons/soundOn.png");
@@ -670,9 +710,82 @@ body {
   background-size: 35px;
   cursor: pointer;
 }
+@media (max-width: 576px) {
+  .settings__sound {
+    background-size: 25px;
+  }
+}
 
-.setting__sound-off {
+.settings__sound-off {
   background-image: url("../src/assets/icons/soundOff.png");
+}
+
+.select {
+  width: 110px;
+}
+@media (max-width: 576px) {
+  .select {
+    width: 90px;
+  }
+}
+
+.select__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  background-color: #fff;
+  padding: 0 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .select__button {
+    font-size: 12px;
+  }
+}
+
+.select__options {
+  position: absolute;
+  width: 110px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #fff;
+  display: none;
+}
+@media (max-width: 576px) {
+  .select__options {
+    width: 90px;
+    font-size: 12px;
+  }
+}
+
+.select.active .select__options {
+  display: block;
+}
+
+.select__option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.select__option:hover {
+  background-color: #F2F2F2;
 }
 
 body {

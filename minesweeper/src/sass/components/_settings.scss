@@ -1,55 +1,11 @@
-.select {
-  width: 110px;
-}
-
-
-.select__button {
-  display: flex;
-  height: 30px;
-  background-color: #fff;
-  padding: 0 10px;
-  align-items: center;
-  font-size: 14px;
-  // justify-content: start;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-
-.select__options {
-  position: absolute;
-  width: 110px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: #fff;
-  // user-select: none;
-  display: none;
-}
-
-.select.active .select__options {
-  display: block;
-}
-
-
-.select__option {
-  display: flex;
-  height: 30px;
-  cursor: pointer;
-  // padding: 0 16px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: #F2F2F2;
-  }
-}
-
 .settings {
   display: flex;
+  max-width: 800px;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+  padding: 0 40px;
 }
 .settings__select {
   width: 80px;
@@ -67,6 +23,7 @@
   // padding: 5px 20px;
   // background-color: #c9c9c9;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .settings__range {
@@ -77,6 +34,9 @@
   outline: none;
   border-radius: 15px;
   overflow: hidden;
+  @include media-mobile {
+    width: 100px;
+  }
 }
 
 .settings__range::-webkit-slider-thumb {
@@ -100,6 +60,12 @@
   border-radius: 25px;
 }
 
+.settings__score-img {
+  @include media-mobile {
+    width: 35px;
+  };
+}
+
 .settings__theme {
   padding: 7px;
   border: none;
@@ -115,9 +81,13 @@
     background: #000;
     // border: 1px solid #000;
   }
+  @include media-mobile {
+    font-size: 12px;
+    padding: 4px;
+  }
 }
 
-.setting__sound {
+.settings__sound {
   height: 50px;
   width: 50px;
   background-image: url('../src/assets/icons/soundOn.png');
@@ -125,8 +95,11 @@
   background-repeat: no-repeat;
   background-size: 35px;
   cursor: pointer;
+  @include media-mobile {
+    background-size: 25px;
+  }
 }
 
-.setting__sound-off {
+.settings__sound-off {
   background-image: url('../src/assets/icons/soundOff.png');
 }
