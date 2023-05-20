@@ -31,8 +31,11 @@ window.addEventListener('load', () => {
   let countFlags;
   let openCell = 0; // счетчик открытых ячеек
   let currentLevelGameDifficult = 'Easy';
+  let timeGame = 0;
   // let countMines = 10;
   let statusGenerateMines = true;
+  let scoreResult = [];
+
 
   // startGame(10, 10);
 
@@ -65,7 +68,7 @@ window.addEventListener('load', () => {
     if (isMine(sizeField, mines, row, column)) {
       openMinesCells(mines, cells);
       createModal(false, timerId);
-
+      // timeGame = 0;
       document.querySelector('.modal').classList.add('modal__active');
 
       return;
@@ -142,10 +145,11 @@ window.addEventListener('load', () => {
 
   document.addEventListener('click', (event) => {
 
+    console.log(countMines);
     // console.log(currentLevelGameDifficult);
     // let currentLevelGameDifficult = '';
     // console.log(sizeField);
-    let timeGame = 0;
+    // let timeGame = 0;
     // Клик по ячейкам
     if (event.target.closest('.minesweeper__wrapper')) {
       // console.log(event.target.classList.contains('minesweeper__button'));
@@ -164,6 +168,7 @@ window.addEventListener('load', () => {
 
         timerId = setInterval(() => {
           timeGame += 1;
+          // console.log(timeGame);
           document.querySelector('.minesweeper__time span').textContent = timeGame;
         }, 1000);
         statusGenerateMines = false;
@@ -189,14 +194,119 @@ window.addEventListener('load', () => {
       // console.log(openCell);
       const needOpenCellForWin = sizeField ** 2 - mines.length;
       if (openCell >= needOpenCellForWin && !isMine(sizeField, mines, row, column)) {
+        // console.log('time2', timeGame);
         if (timeGame === 0) {
           timeGame = 1;
           document.querySelector('.minesweeper__time span').textContent = timeGame;
         }
         openMinesCells(mines, cells);
         createModal(true, timerId, timeGame, countMove);
+        // timeGame = 0;
         document.querySelector('.modal').classList.add('modal__active');
         openCell = 0;
+        // console.log('время игры', timeGame);
+        // console.log('ходы', countMove);
+        // console.log('score', scoreResult.length);
+
+
+        // if (localStorage.getItem('scoreTableResult') === ) {
+        //   scoreResult.push({
+        //     level: currentLevelGameDifficult,
+        //     time: timeGame,
+        //     mines: countMines,
+        //     move: countMove,
+        //   })
+        //   console.log('scrit', scoreResult);
+        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+        // }
+
+        // let getLocalStorageScoreResult = localStorage.getItem('scoreTableResult');
+        // getLocalStorageScoreResult = JSON.parse(getLocalStorageScoreResult);
+
+        // console.log(getLocalStorageScoreResult);
+
+        if (localStorage.getItem('scoreTableResult') === null) {
+          // scoreResult = localStorage.getItem('scoreTableResult');
+          // scoreResult = JSON.parse(scoreResult);
+          scoreResult.push({
+            level: currentLevelGameDifficult,
+            time: timeGame,
+            mines: countMines,
+            move: countMove,
+          })
+          localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+        }
+
+        // let getLocalStorageScoreResult = localStorage.getItem('scoreTableResult');
+        // getLocalStorageScoreResult = JSON.parse(getLocalStorageScoreResult);
+        // console.log('12321312', getLocalStorageScoreResult);
+
+        else if (JSON.parse(localStorage.getItem('scoreTableResult')).length < 10) {
+          scoreResult = JSON.parse(localStorage.getItem('scoreTableResult'));
+          scoreResult.push({
+            level: currentLevelGameDifficult,
+            time: timeGame,
+            mines: countMines,
+            move: countMove,
+          })
+          localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+        } else {
+          scoreResult = JSON.parse(localStorage.getItem('scoreTableResult'));
+          console.log('res', scoreResult);
+          scoreResult.splice(0, 1);
+          scoreResult.push({
+            level: currentLevelGameDifficult,
+            time: timeGame,
+            mines: countMines,
+            move: countMove,
+          })
+          localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+          console.log('data form lsNOOO', scoreResult);
+          console.log('no');
+        }
+
+
+        //  else {
+        //   // scoreResult = localStorage.getItem('scoreTableResult');
+        //   // scoreResult = JSON.parse(scoreResult);
+        //   getLocalStorageScoreResult.splice(0, 1);
+        //   console.log('test', scoreResult.splice(0, 1));
+        //   scoreResult.push({
+        //     level: currentLevelGameDifficult,
+        //     time: timeGame,
+        //     mines: countMines,
+        //     move: countMove,
+        //   })
+        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+
+        // }
+
+
+
+
+
+        // else if (scoreResult.length < 10) {
+        //   scoreResult = localStorage.getItem('scoreTableResult');
+        //   scoreResult = JSON.parse(scoreResult);
+        //   scoreResult.push({
+        //     time: timeGame,
+        //     move: countMove
+        //   })
+        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+
+        // } else {
+        //   scoreResult.splice(0, 1);
+        //   console.log('test', scoreResult.splice(0, 1));
+        //   scoreResult.push({
+        //     time: timeGame,
+        //     move: countMove
+        //   })
+        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
+
+        // }
+
+
+
       }
     }
 
@@ -208,6 +318,8 @@ window.addEventListener('load', () => {
       // document.querySelector('.settings__count-mines').textContent = countMines;
       openCell = 0;
       countMove = 0;
+      timeGame = 0;
+      countMines = 10;
       document.querySelector('.select__button').textContent = currentLevelGameDifficult;
     }
 
@@ -219,6 +331,8 @@ window.addEventListener('load', () => {
       // document.querySelector('.settings__count-mines').textContent = countMines;
       openCell = 0;
       countMove = 0;
+      timeGame = 0;
+      countMines = 10;
       document.querySelector('.select__button').textContent = currentLevelGameDifficult;
     }
 
@@ -249,6 +363,8 @@ window.addEventListener('load', () => {
         createLayout(sizeField);
 
         openCell = 0;
+        timeGame = 0;
+        countMines = 10;
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Medium') {
         // console.log('2');
@@ -262,6 +378,8 @@ window.addEventListener('load', () => {
         createLayout(sizeField);
 
         openCell = 0;
+        timeGame = 0;
+        countMines = 10;
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Hard') {
         currentLevelGameDifficult = 'Hard';
@@ -274,6 +392,8 @@ window.addEventListener('load', () => {
         createLayout(sizeField);
 
         openCell = 0;
+        timeGame = 0;
+        countMines = 10;
       }
 
       document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
@@ -282,8 +402,8 @@ window.addEventListener('load', () => {
     // Клик по теблице результатов
     if (event.target.closest('.settings__score-img')) {
       document.querySelector('.score').innerHTML = '';
-      createScoreTable();
       document.querySelector('.score').classList.add('score__active');
+      createScoreTable();
     }
     if (event.target.closest('.score__button')) {
       document.querySelector('.score').classList.remove('score__active');
@@ -403,7 +523,7 @@ window.addEventListener('load', () => {
       } else {
         event.target.classList.add('flag');
         countFlags += 1;
-        console.log('123');
+        // console.log('123');
         addSondFlagSet();
         document.querySelector('.minesweeper__bombs span').textContent = count - 1;
       }
@@ -413,3 +533,27 @@ window.addEventListener('load', () => {
 });
 
 // });
+
+
+
+
+// let arr = [
+//   { time: 1, move: 2 },
+
+//   { time: 1, move: 1 },
+
+//   { time: 1, move: 1 },
+
+// ]
+// // console.log(arr.length);
+// // arr.splice(0, 1);
+// console.log(arr);
+
+// // arr =
+// console.log(arr);
+
+
+// if (arr.length >= 10) {
+//   arr.splice(0, 1);
+//   arr.push(12);
+// }

@@ -10,6 +10,7 @@
 @import 'sass/components/modal';
 @import 'sass/components/settings';
 @import 'sass/components/select';
+@import 'sass/components/result';
 
 body {
   background-color: rgb(147, 147, 147);
@@ -37,5 +38,20 @@ body {
     transition: 1s all;
     background: #fff;
     color: #000;
+  }
+}
+
+.score__wrapper {
+  background-color: rgb(54, 76, 86);
+  border: 2px solid #fff;
+}
+.score__header-table {
+  border-bottom: 3px solid rgb(22, 43, 53);
+}
+
+
+.score__button {
+  &:hover {
+    border: 2px solid rgb(22, 43, 53);
   }
 }
