@@ -9,44 +9,34 @@ import {
 } from './modules/mines';
 import switchTheme from './modules/theme';
 
-import startGame from './modules/startGame';
-import { addSoundByClick, addSondFlagSet, addSondFlagDelete, offSound } from './modules/clickSound';
+import {
+  addSoundByClick,
+  addSondFlagSet,
+  addSondFlagDelete,
+  offSound,
+} from './modules/clickSound';
 import createScoreTable from './modules/result';
 
-// import setFlag from './modules/setFlag';
-
 window.addEventListener('load', () => {
-
   switchTheme();
   offSound();
   addSoundByClick();
-  // openScore();
-  // let statusGenerateMines = true;
-  let sizeField = 10;
-  let mines = '';
-  let timerId;
+  let sizeField = 10; // размер поля
+  let mines = ''; // мины на поле
+  let timerId; // установка таймера
   let countMove = 0; // счетчик ходов
-  // let timeGame = 0;
-  let countMines = 10;
+  let countMines = 10; // количество мин
   let countFlags;
   let openCell = 0; // счетчик открытых ячеек
   let currentLevelGameDifficult = 'Easy';
   let timeGame = 0;
-  // let countMines = 10;
   let statusGenerateMines = true;
   let scoreResult = [];
 
-
-  // startGame(10, 10);
-
   createLayout(sizeField);
-  // document.querySelector('.settings__count-mines').textContent = countMines;
-
-
   const openCells = (row, column) => {
     const minesweeper = document.querySelector('.minesweeper__wrapper');
     const cells = [...minesweeper.children]; // Получение всех ячеек поля
-    // console.log('cells1 ', cells);
 
     if (!IsExistCells(sizeField, row, column)) return;
 
@@ -58,8 +48,6 @@ window.addEventListener('load', () => {
     }
     if (cell.classList.contains('flag')) {
       return;
-      // const flag = document.querySelector('.minesweeper__flags span').textContent;
-      // document.querySelector('.minesweeper__flags span').textContent = flag - 1;
     }
 
     cell.classList.add('minesweeper__button_disabled');
@@ -68,9 +56,7 @@ window.addEventListener('load', () => {
     if (isMine(sizeField, mines, row, column)) {
       openMinesCells(mines, cells);
       createModal(false, timerId);
-      // timeGame = 0;
       document.querySelector('.modal').classList.add('modal__active');
-
       return;
     }
 
@@ -116,59 +102,20 @@ window.addEventListener('load', () => {
     openCells(row - 1, column + 1);
   };
 
-  // document.querySelector('.minesweeper__wrapper').addEventListener('click', (event) => {
-  //   // Выполнится один раз. Генерация бомб и запуск таймера при первом клике
-  //   if (statusGenerateMines) {
-  //     const clickedButton = cells.indexOf(event.target);
-  //     mines = generateMines(sizeField, countMines, clickedButton);
-
-  //     timerId = setInterval(() => {
-  //       timeGame += 1;
-  //       document.querySelector('.minesweeper__time span').textContent = timeGame;
-  //     }, 1000);
-  //     statusGenerateMines = false;
-  //     // Оставшееся количество бомб
-  //     // const countFlags = +document.querySelector('.minesweeper__flags span').textContent;
-  //     // document.querySelector('.minesweeper__bombs span').textContent = mines.length - countFlags;
-  //   }
-  //   // Количество ходов
-  //   countMove += 1;
-  //   document.querySelector('.minesweeper__count-moves span').textContent = countMove;
-
-  //   // Открытие ячеек при клике
-  //   const index = cells.indexOf(event.target);
-  //   const column = index % sizeField;
-  //   const row = Math.floor(index / sizeField);
-  //   openCells(row, column);
-
-  // });
-
   document.addEventListener('click', (event) => {
-
-    console.log(countMines);
-    // console.log(currentLevelGameDifficult);
-    // let currentLevelGameDifficult = '';
-    // console.log(sizeField);
-    // let timeGame = 0;
     // Клик по ячейкам
     if (event.target.closest('.minesweeper__wrapper')) {
-      // console.log(event.target.classList.contains('minesweeper__button'));
       const minesweeper = document.querySelector('.minesweeper__wrapper');
       const cells = [...minesweeper.children]; // Получение всех ячеек поля
-      // console.log('cells2 ', cells);
+
       // Выполнится один раз. Генерация бомб и запуск таймера при первом клике
       if (statusGenerateMines) {
-        // console.log('test');
         const clickedButton = cells.indexOf(event.target);
-        // console.log(clickedButton);
-        // console.log('123', countMines);
         mines = generateMines(sizeField, countMines, clickedButton);
-        // console.log('Мины', mines);
         document.querySelector('.settings__range').disabled = true;
 
         timerId = setInterval(() => {
           timeGame += 1;
-          // console.log(timeGame);
           document.querySelector('.minesweeper__time span').textContent = timeGame;
         }, 1000);
         statusGenerateMines = false;
@@ -191,122 +138,44 @@ window.addEventListener('load', () => {
       openCells(row, column);
 
       // Открытие ячеек в случае победы
-      // console.log(openCell);
       const needOpenCellForWin = sizeField ** 2 - mines.length;
       if (openCell >= needOpenCellForWin && !isMine(sizeField, mines, row, column)) {
-        // console.log('time2', timeGame);
         if (timeGame === 0) {
           timeGame = 1;
           document.querySelector('.minesweeper__time span').textContent = timeGame;
         }
         openMinesCells(mines, cells);
         createModal(true, timerId, timeGame, countMove);
-        // timeGame = 0;
         document.querySelector('.modal').classList.add('modal__active');
         openCell = 0;
-        // console.log('время игры', timeGame);
-        // console.log('ходы', countMove);
-        // console.log('score', scoreResult.length);
-
-
-        // if (localStorage.getItem('scoreTableResult') === ) {
-        //   scoreResult.push({
-        //     level: currentLevelGameDifficult,
-        //     time: timeGame,
-        //     mines: countMines,
-        //     move: countMove,
-        //   })
-        //   console.log('scrit', scoreResult);
-        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-        // }
-
-        // let getLocalStorageScoreResult = localStorage.getItem('scoreTableResult');
-        // getLocalStorageScoreResult = JSON.parse(getLocalStorageScoreResult);
-
-        // console.log(getLocalStorageScoreResult);
-
         if (localStorage.getItem('scoreTableResult') === null) {
-          // scoreResult = localStorage.getItem('scoreTableResult');
-          // scoreResult = JSON.parse(scoreResult);
           scoreResult.push({
             level: currentLevelGameDifficult,
             time: timeGame,
             mines: countMines,
             move: countMove,
-          })
+          });
           localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-        }
-
-        // let getLocalStorageScoreResult = localStorage.getItem('scoreTableResult');
-        // getLocalStorageScoreResult = JSON.parse(getLocalStorageScoreResult);
-        // console.log('12321312', getLocalStorageScoreResult);
-
-        else if (JSON.parse(localStorage.getItem('scoreTableResult')).length < 10) {
+        } else if (JSON.parse(localStorage.getItem('scoreTableResult')).length < 10) {
           scoreResult = JSON.parse(localStorage.getItem('scoreTableResult'));
           scoreResult.push({
             level: currentLevelGameDifficult,
             time: timeGame,
             mines: countMines,
             move: countMove,
-          })
+          });
           localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
         } else {
           scoreResult = JSON.parse(localStorage.getItem('scoreTableResult'));
-          console.log('res', scoreResult);
           scoreResult.splice(0, 1);
           scoreResult.push({
             level: currentLevelGameDifficult,
             time: timeGame,
             mines: countMines,
             move: countMove,
-          })
+          });
           localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-          console.log('data form lsNOOO', scoreResult);
-          console.log('no');
         }
-
-
-        //  else {
-        //   // scoreResult = localStorage.getItem('scoreTableResult');
-        //   // scoreResult = JSON.parse(scoreResult);
-        //   getLocalStorageScoreResult.splice(0, 1);
-        //   console.log('test', scoreResult.splice(0, 1));
-        //   scoreResult.push({
-        //     level: currentLevelGameDifficult,
-        //     time: timeGame,
-        //     mines: countMines,
-        //     move: countMove,
-        //   })
-        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-
-        // }
-
-
-
-
-
-        // else if (scoreResult.length < 10) {
-        //   scoreResult = localStorage.getItem('scoreTableResult');
-        //   scoreResult = JSON.parse(scoreResult);
-        //   scoreResult.push({
-        //     time: timeGame,
-        //     move: countMove
-        //   })
-        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-
-        // } else {
-        //   scoreResult.splice(0, 1);
-        //   console.log('test', scoreResult.splice(0, 1));
-        //   scoreResult.push({
-        //     time: timeGame,
-        //     move: countMove
-        //   })
-        //   localStorage.setItem('scoreTableResult', JSON.stringify(scoreResult));
-
-        // }
-
-
-
       }
     }
 
@@ -315,7 +184,6 @@ window.addEventListener('load', () => {
       clearInterval(timerId);
       statusGenerateMines = true;
       createLayout(sizeField);
-      // document.querySelector('.settings__count-mines').textContent = countMines;
       openCell = 0;
       countMove = 0;
       timeGame = 0;
@@ -328,7 +196,6 @@ window.addEventListener('load', () => {
       clearInterval(timerId);
       statusGenerateMines = true;
       createLayout(sizeField);
-      // document.querySelector('.settings__count-mines').textContent = countMines;
       openCell = 0;
       countMove = 0;
       timeGame = 0;
@@ -340,43 +207,35 @@ window.addEventListener('load', () => {
     if (event.target.closest('.select__button')) {
       event.target.closest('.select').classList.toggle('active');
     }
-    // console.log('test', event.target);
-    // console.log(event.target.closest('.select__option').children[0].textContent);
-    // console.log('123', currentLevelGameDifficult);
     if (event.target.closest('.select__option')) {
       if (event.target.closest('.select__option').children[0].textContent === currentLevelGameDifficult) {
-        console.log('tru');
         document.querySelector('.select').classList.remove('active');
         return;
       }
 
       if (event.target.closest('.select__option').children[0].textContent === 'Easy') {
-        // console.log('1');
         currentLevelGameDifficult = 'Easy';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
-        // document.body.innerHTML = '';
 
         clearInterval(timerId);
         statusGenerateMines = true;
         sizeField = 10;
         createLayout(sizeField);
-
+        countMove = 0;
         openCell = 0;
         timeGame = 0;
         countMines = 10;
       }
       if (event.target.closest('.select__option').children[0].textContent === 'Medium') {
-        // console.log('2');
         currentLevelGameDifficult = 'Medium';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
-        // document.body.innerHTML = '';
         clearInterval(timerId);
         statusGenerateMines = true;
         sizeField = 15;
         createLayout(sizeField);
-
+        countMove = 0;
         openCell = 0;
         timeGame = 0;
         countMines = 10;
@@ -385,12 +244,11 @@ window.addEventListener('load', () => {
         currentLevelGameDifficult = 'Hard';
         document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
         document.querySelector('.select').classList.remove('active');
-        // document.body.innerHTML = '';
         clearInterval(timerId);
         statusGenerateMines = true;
         sizeField = 25;
         createLayout(sizeField);
-
+        countMove = 0;
         openCell = 0;
         timeGame = 0;
         countMines = 10;
@@ -410,107 +268,17 @@ window.addEventListener('load', () => {
     }
   });
 
-  // document.addEventListener('click', (event) => {
-  // if (statusGenerateMines) {
-  //   const clickedButton = cells.indexOf(event.target);
-  //   mines = generateMines(sizeField, countMines, clickedButton);
-
-  //   timerId = setInterval(() => {
-  //     timeGame += 1;
-  //     document.querySelector('.minesweeper__time span').textContent = timeGame;
-  //   }, 1000);
-  //   statusGenerateMines = false;
-
-  //   // Оставшееся количество бомб
-  //   const countFlags = +document.querySelector('.minesweeper__flags span').textContent;
-  //   document.querySelector('.minesweeper__bombs span').textContent = mines.length - countFlags;
-  // }
-
-
-
-  // if (event.target.closest('.minesweeper__wrapper')) {
-  //   console.log(countMines);
-  //   // document.body.innerHTML = '';
-  //   // createLayout();
-  //   // creatField(10);
-  //   // startGame(10, countMines);
-  // }
-
-
-  // // Клик по nee game
-  // if (event.target.closest('.minesweeper__new-game')) {
-  //   document.body.innerHTML = '';
-  //   // createLayout();
-  //   // creatField(10);
-  //   startGame(10, countMines);
-  // }
-
-  // // Клик по модалке (закрыть)
-  // if (event.target.closest('.modal__button')) {
-  //   document.body.innerHTML = '';
-  //   // createLayout();
-  //   // creatField(10);
-  //   startGame(10, countMines);
-  // }
-
-  // Выбор уровня сложнолсти
-  // if (event.target.closest('.select__button')) {
-  //   event.target.closest('.select').classList.toggle('active');
-  // }
-  // if (event.target.closest('.select__option')) {
-  //   if (event.target.closest('.select__option').children[0].textContent === currentLevelGameDifficult) {
-  //     document.querySelector('.select').classList.remove('active');
-  //     return;
-  //   }
-
-  //   if (event.target.closest('.select__option').children[0].textContent === 'Easy') {
-  //     currentLevelGameDifficult = 'Easy';
-  //     document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
-  //     document.querySelector('.select').classList.remove('active');
-  //     document.body.innerHTML = '';
-  //     // createLayout();
-  //     // creatField(10);
-  //     startGame(10, 10);
-  //   }
-  //   if (event.target.closest('.select__option').children[0].textContent === 'Medium') {
-  //     currentLevelGameDifficult = 'Medium';
-  //     document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
-  //     document.querySelector('.select').classList.remove('active');
-  //     document.body.innerHTML = '';
-  //     // createLayout();
-  //     // creatField(15);
-  //     startGame(15, 40);
-  //   }
-  //   if (event.target.closest('.select__option').children[0].textContent === 'Hard') {
-  //     currentLevelGameDifficult = 'Hard';
-  //     document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
-  //     document.querySelector('.select').classList.remove('active');
-  //     document.body.innerHTML = '';
-  //     // createLayout();
-  //     // creatField(25);
-  //     startGame(25, 99);
-  //   }
-
-  //   document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
-  //   document.querySelector('.select').classList.remove('active');
-  // }
-
   // Изменение количества мин
   document.addEventListener('mousemove', (event) => {
     if (event.target.closest('.settings__range')) {
-      // console.log(event.target.closest('.settings__range').value);
       document.querySelector('.settings__count-mines').textContent = event.target.closest('.settings__range').value;
-
       countMines = document.querySelector('.settings__count-mines').textContent;
-      // console.log (countMines);
     }
   });
-  // document.querySelector('.settings__count-mines').textContent = countMines;
 
   // ПКМ.Добавление флагов и мин
   document.addEventListener('contextmenu', (event) => event.preventDefault());
   document.addEventListener('mousedown', (event) => {
-
     const count = +document.querySelector('.minesweeper__bombs span').textContent;
 
     if (event.target.classList.contains('minesweeper__button') && event.button === 2) {
@@ -523,7 +291,6 @@ window.addEventListener('load', () => {
       } else {
         event.target.classList.add('flag');
         countFlags += 1;
-        // console.log('123');
         addSondFlagSet();
         document.querySelector('.minesweeper__bombs span').textContent = count - 1;
       }
@@ -531,29 +298,3 @@ window.addEventListener('load', () => {
     }
   });
 });
-
-// });
-
-
-
-
-// let arr = [
-//   { time: 1, move: 2 },
-
-//   { time: 1, move: 1 },
-
-//   { time: 1, move: 1 },
-
-// ]
-// // console.log(arr.length);
-// // arr.splice(0, 1);
-// console.log(arr);
-
-// // arr =
-// console.log(arr);
-
-
-// if (arr.length >= 10) {
-//   arr.splice(0, 1);
-//   arr.push(12);
-// }

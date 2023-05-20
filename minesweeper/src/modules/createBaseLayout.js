@@ -29,7 +29,6 @@ const createLayout = (size) => {
   const createContainer = createNode('div', 'container');
   appendNodeToDom(document.body, createContainer);
 
-
   const createMinesweeper = createNode('div', 'minesweeper');
   createMinesweeper.innerHTML = `
     <div class="settings">

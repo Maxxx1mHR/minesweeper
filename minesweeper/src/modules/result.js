@@ -1,7 +1,6 @@
 import { createNode, appendNodeToDom } from './createBaseLayout';
 
 const createScoreTable = () => {
-
   const score = createNode('div', 'score__wrapper');
   score.innerHTML = `
     <div class="score__table">
@@ -20,13 +19,9 @@ const createScoreTable = () => {
    `;
 
   appendNodeToDom(document.querySelector('.score'), score);
-  // document.body.prepend(score);
-  //  document.querySelector('.score__content') {}
-  console.log('hi from result');
   if (localStorage.getItem('scoreTableResult') !== null) {
     let scoreResult = localStorage.getItem('scoreTableResult');
     scoreResult = JSON.parse(scoreResult);
-    console.log('ressss', scoreResult);
     scoreResult.forEach((item, index) => {
       const result = createNode('li', 'score__item');
       result.innerHTML += `
@@ -37,19 +32,8 @@ const createScoreTable = () => {
         <span class="score__item-move">${item.move}</span>
        `;
       appendNodeToDom(document.querySelector('.score__list'), result);
-    })
+    });
   }
-
 };
-
-// const openScore = () => {
-
-//   document.addEventListener('click', (event) => {
-
-//     // console.log(event.target.closest('.score'));
-//     // console.log(event.target);
-
-//   });
-// };
 
 export default createScoreTable;

@@ -75,4 +75,11 @@ const offSound = () => {
   });
 };
 
-export { addSoundByClick, addSoundLose, addSoundWin, addSondFlagSet, addSondFlagDelete, offSound };
+export {
+  addSoundByClick,
+  addSoundLose,
+  addSoundWin,
+  addSondFlagSet,
+  addSondFlagDelete,
+  offSound,
+};

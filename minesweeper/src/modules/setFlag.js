@@ -12,7 +12,6 @@ const setFlag = () => {
         countFlags += 1;
       }
     }
-    console.log(countFlags);
     return countFlags;
   });
 };

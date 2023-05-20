@@ -1,7 +1,6 @@
 // Генерирует мины на поле.
 // excludeCell - первая активная ячейка - исключить из генерации на ее месте мины
 const generateMines = (sizeField, countMines, excludeCell) => {
-  // console.log('123');
   const min = 0;
   const max = sizeField ** 2 - 1;
   const result = [];
@@ -58,7 +57,6 @@ const getMinesCount = (sizeField, mines, row, column) => {
 };
 
 // Открыть все ячейки, в которых есть мины
-{/* <img src="assets/icons/bomb_small.png" alt="bobm" /> */ }
 const openMinesCells = (mines, cells) => {
   mines.forEach((index) => {
     cells[index].innerHTML = `
