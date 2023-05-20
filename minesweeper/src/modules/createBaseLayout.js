@@ -24,8 +24,11 @@ const creatField = (size) => {
 
 const createLayout = (size) => {
   document.body.innerHTML = '';
+  const score = createNode('div', 'score');
+  appendNodeToDom(document.body, score);
   const createContainer = createNode('div', 'container');
   appendNodeToDom(document.body, createContainer);
+
 
   const createMinesweeper = createNode('div', 'minesweeper');
   createMinesweeper.innerHTML = `
@@ -82,4 +85,4 @@ const createLayout = (size) => {
   creatField(size);
 };
 
-export { createLayout, createNode };
+export { createLayout, createNode, appendNodeToDom };

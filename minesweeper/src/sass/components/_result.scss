@@ -1,0 +1,38 @@
+.score {
+  position: fixed;
+  // top: 0;
+  // left: 0;
+  /* z-index: 2; */
+  display: none;
+  // display: block;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.score__wrapper {
+  max-width: 400px;
+  position: absolute;
+  left: 50%;
+  // top: 20px;
+  transform: translateX(-50%);
+  // transform: translate(-50%, -50%);
+  background-color: #4d2929;
+  border-radius: 9px;
+}
+
+.score__button {
+  cursor: pointer;
+  // padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+.score__active {
+  display: block;
+  // display: none;
+}

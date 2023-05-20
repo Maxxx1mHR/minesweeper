@@ -11,13 +11,16 @@ import switchTheme from './modules/theme';
 
 import startGame from './modules/startGame';
 import { addSoundByClick, addSondFlagSet, addSondFlagDelete, offSound } from './modules/clickSound';
+import createScoreTable from './modules/result';
 
 // import setFlag from './modules/setFlag';
 
 window.addEventListener('load', () => {
+
   switchTheme();
   offSound();
   addSoundByClick();
+  // openScore();
   // let statusGenerateMines = true;
   let sizeField = 10;
   let mines = '';
@@ -275,6 +278,15 @@ window.addEventListener('load', () => {
 
       document.querySelector('.select__button').textContent = event.target.closest('.select__option').children[0].textContent;
       document.querySelector('.select').classList.remove('active');
+    }
+    // Клик по теблице результатов
+    if (event.target.closest('.settings__score-img')) {
+      document.querySelector('.score').innerHTML = '';
+      createScoreTable();
+      document.querySelector('.score').classList.add('score__active');
+    }
+    if (event.target.closest('.score__button')) {
+      document.querySelector('.score').classList.remove('score__active');
     }
   });
 

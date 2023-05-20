@@ -61,6 +61,7 @@
 }
 
 .settings__score-img {
+  cursor: pointer;
   @include media-mobile {
     width: 35px;
   };

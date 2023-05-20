@@ -673,6 +673,9 @@ body {
   border-radius: 25px;
 }
 
+.settings__score-img {
+  cursor: pointer;
+}
 @media (max-width: 576px) {
   .settings__score-img {
     width: 35px;
