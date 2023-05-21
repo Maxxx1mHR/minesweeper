@@ -17,19 +17,6 @@ const switchTheme = () => {
         localStorage.setItem('saveTheme', 'light');
         theme.href = '../css/index.css';
       }
-
-      // const theme = document.querySelector('#theme');
-      // if (localStorage.getItem('saveTheme') === 'light') {
-      // theme.href = '../css/index.css';
-      // } else {
-      // theme.href = '../css/index-dark.css';
-      // localStorage.setItem('saveTheme', 'dark');
-      // }
-      // if (theme.getAttribute('href') === '../css/index.css') {
-      //   theme.href = '../css/index-dark.css';
-      // } else {
-      //   theme.href = '../css/index.css';
-      // }
     }
   });
 };

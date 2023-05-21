@@ -18,26 +18,19 @@ import {
 import createScoreTable from './modules/result';
 
 window.addEventListener('load', () => {
-  // let sizeField = 10; // размер поля
-  let sizeField;
+  let sizeField; // размер поля
   let mines = ''; // мины на поле
   let timerId; // установка таймера
-  // let countMove = 0; // счетчик ходов
-  let countMove;
-  // let countMines = 10; // количество мин
-  let countMines;
+  let countMove; // счетчик ходов
+  let countMines; // количество мин
   let countFlags;
   let openCell = 0; // счетчик открытых ячеек
-  // let currentLevelGameDifficult = 'Easy';
   let currentLevelGameDifficult;
-  // let timeGame = 0;
   let timeGame;
   let statusGenerateMines = true;
   let scoreResult = [];
   let arrayForOpenedCelss;
   let arrayForFlags;
-
-
 
   const openCells = (row, column) => {
     const minesweeper = document.querySelector('.minesweeper__wrapper');
@@ -115,8 +108,6 @@ window.addEventListener('load', () => {
 
   // Установка уровня сложности из ls
   if (localStorage.getItem('currentLevelGameDifficult') === null) {
-    // localStorage.setItem('currentLevelGameDifficult', 'Easy');
-
     currentLevelGameDifficult = 'Easy';
     sizeField = 10;
   } else {
@@ -139,7 +130,6 @@ window.addEventListener('load', () => {
   switchTheme();
   offSound();
   addSoundByClick();
-  // createLayout(sizeField);
 
   // Устновка количества шагов из ls
   if (localStorage.getItem('saveCountMove') === null) {
@@ -177,8 +167,6 @@ window.addEventListener('load', () => {
     });
   }
 
-
-
   // Открывать ячейки, если есть в ls и записывать сохраненные минны
   if (localStorage.getItem('saveOpenedCells') === null) {
     arrayForOpenedCelss = [];
@@ -189,7 +177,6 @@ window.addEventListener('load', () => {
       openCells(cell[0], cell[1]);
     });
   }
-
 
   document.addEventListener('click', (event) => {
     // Клик по ячейкам
@@ -259,9 +246,6 @@ window.addEventListener('load', () => {
         openMinesCells(mines, cells);
         createModal(true, timerId, timeGame, countMove);
         document.querySelector('.modal').classList.add('modal__active');
-        // openCell = 0;
-        // arrayForOpenedCelss = []; // очистка открытых ячеек
-        // localStorage.removeItem('saveGenerateMinesPosition'); // Удаление из ls позиции мин
 
         // Сохрание результата в local storage, если победа
         if (localStorage.getItem('scoreTableResult') === null) {
@@ -476,9 +460,6 @@ window.addEventListener('load', () => {
     if (event.target.closest('.settings__range')) {
       document.querySelector('.settings__count-mines').textContent = event.target.closest('.settings__range').value;
       countMines = +document.querySelector('.settings__count-mines').textContent;
-
-      // Сохранение количетсва мин в ls
-      // localStorage.setItem('saveCountMines', countMines);
     }
   });
 
