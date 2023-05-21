@@ -68,9 +68,25 @@ const addSondFlagDelete = () => {
 };
 
 const offSound = () => {
+  if (localStorage.getItem('saveSound') === null) {
+    localStorage.setItem('saveSound', 'on');
+  }
+  if (localStorage.getItem('saveSound') === 'on') {
+    document.querySelector('.settings__sound').classList.remove('settings__sound-off');
+  }
+  if (localStorage.getItem('saveSound') === 'off') {
+    document.querySelector('.settings__sound').classList.add('settings__sound-off');
+  }
+
   document.addEventListener('click', (event) => {
     if (event.target.closest('.settings__sound')) {
-      event.target.classList.toggle('settings__sound-off');
+      if (localStorage.getItem('saveSound') === 'on') {
+        event.target.classList.add('settings__sound-off');
+        localStorage.setItem('saveSound', 'off');
+      } else {
+        event.target.classList.remove('settings__sound-off');
+        localStorage.setItem('saveSound', 'on');
+      }
     }
   });
 };
