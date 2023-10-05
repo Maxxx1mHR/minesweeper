@@ -1,3 +1,5 @@
+// @import "../base/base";
+
 .minesweeper {
   width: 100%;
   padding-top: 100px;
@@ -89,19 +91,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#ddd;
-  border-color:#ddd rgb(120, 120, 120) rgb(120, 120, 120) #ddd;
-  border-style:solid;
-  border-width:3px;
+  background-color: var(--background-color);
+  border-color: #ddd rgb(120, 120, 120) rgb(120, 120, 120) #ddd;
+  border-style: solid;
+  border-width: 3px;
   height: 20px;
   width: 20px;
 }
 
 .minesweeper__button_disabled {
-  border-width:1px;
-  background: rgb(238, 238, 238);
+  border-width: 1px;
+  background: var(--background-disabled);
   border-color: none;
   pointer-events: none;
 }
-
-

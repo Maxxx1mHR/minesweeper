@@ -1,6 +1,25 @@
 body {
+  --text-color: #000;
+  --background-button: #fff;
   background-color: rgb(225, 196, 196);
+  --background-color: #ddd;
+  --background-disabled: rgb(238, 238, 238);
+  --background-image: url("../assets/icons/bomb_small.png");
+  --score-background: #e69393;
+  --score-border: #5c4242;
 }
+
+body.dark {
+  --text-color: #fff;
+  --background-button: #000;
+  background-color: rgb(147, 147, 147);
+  --background-color: black;
+  --background-disabled: rgb(129, 129, 129);
+  --background-image: url("../assets/icons/bomb_small-dark.png");
+  --score-background: rgb(54, 76, 86);
+  --score-border: rgb(22, 43, 53);
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;

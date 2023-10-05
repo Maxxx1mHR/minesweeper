@@ -1,26 +1,18 @@
 {
-  "name": "virtual-keyboard",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "minesweeper",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Maxxx1mHR/virtual-keyboard.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Maxxx1mHR/virtual-keyboard/issues"
-  },
-  "homepage": "https://github.com/Maxxx1mHR/virtual-keyboard#readme",
   "devDependencies": {
     "eslint": "^8.41.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "webpack": "^5.81.0",
-    "webpack-cli": "^5.0.2"
+    "sass": "^1.68.0",
+    "vite": "^4.4.5"
   }
 }

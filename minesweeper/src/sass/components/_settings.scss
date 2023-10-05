@@ -60,20 +60,21 @@
   cursor: pointer;
   @include media-mobile {
     width: 35px;
-  };
+  }
 }
 
 .settings__theme {
   padding: 7px;
   border: none;
   border-radius: 50px;
-  color: #000;
+  color: var(--text-color);
+  background: var(--background-button);
   cursor: pointer;
   transition: 1s all;
   &:hover {
     transition: 1s all;
-    color: #fff;
-    background: #000;
+    color: var(--background-button);
+    background: var(--text-color);
   }
   @include media-mobile {
     font-size: 12px;
@@ -84,7 +85,7 @@
 .settings__sound {
   height: 50px;
   width: 50px;
-  background-image: url('../src/assets/icons/soundOn.png');
+  background-image: url("../assets/icons/soundOn.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 35px;
@@ -95,5 +96,5 @@
 }
 
 .settings__sound-off {
-  background-image: url('../src/assets/icons/soundOff.png');
+  background-image: url("../assets/icons/soundOff.png");
 }

@@ -12,9 +12,9 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #e69393;
+  background-color: var(--score-background);
   border-radius: 9px;
-  border: 2px solid #5c4242;
+  border: 2px solid var(--score-border);
 }
 
 .score__table {
@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid #4e1919;
+  border-bottom: 3px solid var(--score-border);
   margin-bottom: 10px;
 }
 
@@ -61,7 +61,7 @@
   border-radius: 20px;
   border: 1px solid #fff;
   &:hover {
-    border: 2px solid rgba(116, 29, 29, 0.867);
+    border: 2px solid var(--score-border);
   }
 }
 
